@@ -5,6 +5,8 @@ import Icon from "../../components/Icon/Icon";
 import ContactItem from "./components/ContactItem";
 import Grid from "../../components/Grid/Grid";
 import {
+  CV_EN_URL,
+  CV_NO_URL,
   EMAIL,
   GITHUB_URL,
   LINKEDIN_LOGO_URL,
@@ -71,8 +73,18 @@ export function ContactPage() {
           </div>
           <div className={styles.footer}>
             <div className={styles["cv-buttons"]}>
-              <Button icon="download" label="Download CV (EN)" type="outline" />
-              <Button icon="download" label="Download CV (NO)" type="outline" />
+              <Button
+                icon="download"
+                label="Download CV (EN)"
+                type="outline"
+                href={CV_EN_URL}
+              />
+              <Button
+                icon="download"
+                label="Download CV (NO)"
+                type="outline"
+                href={CV_NO_URL}
+              />
             </div>
           </div>
         </div>

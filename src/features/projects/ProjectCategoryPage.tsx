@@ -26,7 +26,7 @@ export function ProjectCategoryPage() {
           ))}
         </Grid>
       ) : (
-        <p>Ingen prosjekter lagt til enda for denne kategorien.</p>
+        <p>No projects added for this category</p>
       )}
     </Widget>
   );

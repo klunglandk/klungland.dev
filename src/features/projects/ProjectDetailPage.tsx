@@ -12,11 +12,11 @@ export function ProjectDetailPage() {
   return (
     <Widget title={entry?.title ?? capitalize(slug ?? "")} type="large">
       {entry ? (
-        <Suspense fallback={<p>Laster...</p>}>
+        <Suspense fallback={<p>Loading...</p>}>
           <entry.component />
         </Suspense>
       ) : (
-        <p>Fant ikke prosjektet.</p>
+        <p>Could not load project</p>
       )}
     </Widget>
   );

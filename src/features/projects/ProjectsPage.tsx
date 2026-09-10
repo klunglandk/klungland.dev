@@ -16,8 +16,8 @@ const categories: CategoryCard[] = [
   {
     title: "React",
     icon: "react",
-    href: "/projects/react",
-    count: Object.keys(ProjectRegistry.react ?? {}).length,
+    // href: "/projects/react",
+    // count: Object.keys(ProjectRegistry.react ?? {}).length,
     unit: "prosjekter",
   },
   {
@@ -25,7 +25,7 @@ const categories: CategoryCard[] = [
     icon: "svelte",
     href: "/projects/svelte",
     count: Object.keys(ProjectRegistry.svelte ?? {}).length,
-    unit: "komponenter",
+    unit: "components",
   },
   { title: "C++", icon: "codeXml" },
   { title: "C#", icon: "codeXml" },

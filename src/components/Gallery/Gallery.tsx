@@ -15,7 +15,7 @@ export default function Gallery({ collectionName }: GalleryProps) {
 
     const swiper = new Swiper(".swiper", {
       direction: "horizontal",
-      loop: true,
+      loop: images.length > 2,
       pagination: {
         el: ".swiper-pagination",
         type: "bullets",

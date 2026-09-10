@@ -59,18 +59,6 @@ export interface Image {
   description?: string;
 }
 
-export interface Project {
-  title: string;
-  category: string;
-  slug: string;
-  description: string;
-  imageUrl?: string;
-  githubUrl?: string;
-  techStack?: string[];
-  embedUrl?: string; // Svelte playground-lenke, CodeSandbox, etc.
-  createdAt?: string;
-}
-
 export type GridType = "col-2" | "col-3" | "col-4" | "timeline-col";
 
 export interface Grid {

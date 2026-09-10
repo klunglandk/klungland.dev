@@ -1,0 +1,23 @@
+.swiper {
+  --swiper-pagination-color: var(--secondary);
+  --swiper-navigation-color: var(--secondary);
+
+  .swiper-wrapper {
+    .swiper-slide {
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border-radius: var(--radius);
+        opacity: 0;
+        transition: opacity 250ms ease;
+
+        &.loaded {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

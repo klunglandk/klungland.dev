@@ -1,0 +1,26 @@
+.widget {
+  background-color: var(--card);
+  color: var(--foreground);
+  border-radius: var(--radius);
+  border: var(--border-width) solid var(--border);
+  padding: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  &.small {
+    flex-grow: 0;
+    flex-shrink: 0;
+    min-width: 10%;
+  }
+
+  .widget-header {
+    display: flex;
+  }
+  .widget-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}

@@ -1,0 +1,5 @@
+.separator {
+  background-color: currentColor;
+  width: 1px;
+  border-radius: var(--radius-selector);
+}

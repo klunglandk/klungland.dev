@@ -1,0 +1,40 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-secondary);
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+  margin-bottom: 3rem;
+}
+.footer-top {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.icon-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: black;
+  gap: 1rem;
+
+  :hover {
+    color: black;
+  }
+}
+
+.icon-chip-linkedin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.footer-middle,
+.footer-bottom {
+  opacity: 0.9;
+}

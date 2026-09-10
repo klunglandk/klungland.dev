@@ -1,0 +1,157 @@
+:root {
+  /* Base surfaces and text */
+  --background: oklch(0.91 0.05 82.69);
+  --foreground: oklch(0.41 0.08 79.04);
+
+  --card: oklch(0.92 0.04 83.86);
+  --card-foreground: oklch(0.41 0.08 73.75);
+
+  --popover: oklch(0.92 0.04 83.86);
+  --popover-foreground: oklch(0.41 0.08 73.75);
+
+  /* Brand and interactive colors */
+  --primary: oklch(0.71 0.1 111.99);
+  --primary-foreground: oklch(0.98 0.01 3.71);
+
+  --secondary: oklch(0.88 0.05 83.41);
+  --secondary-foreground: oklch(0.51 0.08 79.21);
+
+  --muted: oklch(0.86 0.06 83.48);
+  --muted-foreground: oklch(0.51 0.08 74.26);
+
+  --accent: oklch(0.86 0.05 84.5);
+  --accent-foreground: oklch(0.26 0.02 358.42);
+
+  --danger: oklch(0.63 0.24 29.21);
+  --danger-foreground: oklch(0.98 0.01 3.71);
+
+  /* Borders and focus */
+  --border: oklch(0.74 0.06 79.81);
+  --input-border: oklch(0.74 0.06 79.81);
+  --focus-ring: oklch(0.51 0.08 74.26);
+
+  /* Semantic roles the palette above doesn't define but the app still needs */
+  --success: oklch(0.7 0.12 183.2);
+  --success-foreground: oklch(0.41 0.08 79.04);
+  --info: oklch(0.48 0.08 211.46);
+  --neutral: oklch(0.92 0.04 83.86);
+  --neutral-foreground: oklch(0.41 0.08 79.04);
+
+  /* Data visualization palette */
+  --viz-rust: oklch(0.66 0.19 41.68);
+  --viz-teal: oklch(0.7 0.12 183.2);
+  --viz-petrol: oklch(0.48 0.08 211.46);
+  --viz-gold: oklch(0.84 0.17 85.07);
+  --viz-amber: oklch(0.74 0.17 60.21);
+
+  /* Layout shape */
+  --radius: 0.625rem;
+  --radius-selector: 2rem;
+  --radius-field: 2rem;
+  --border-width: 1px;
+  --depth: 0;
+  --noise: 1;
+  --font-size-standard: 1.125rem;
+  --font-size-interactive: 1rem;
+  --font-size-secondary: 0.875rem;
+
+  color-scheme: light;
+}
+
+a {
+  all: unset;
+  color: var(--viz-rust);
+  font-weight: 500;
+
+  &:hover {
+    cursor: pointer;
+    color: var(--viz-amber);
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: var(--font-size-standard);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+header {
+  margin-top: 5%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .row {
+    display: flex;
+    gap: 15px;
+    &.medium {
+      flex-grow: 1;
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  text-shadow: 0 0.5px oklch(100% 0 0 / calc(var(--depth) * 0.15));
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+h2 {
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h3 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+h4 {
+  font-size: var(--font-size-interactive);
+}
+
+p {
+  margin: 0;
+}
+
+.swiper {
+  --swiper-pagination-color: var(--secondary);
+  --swiper-navigation-color: var(--secondary);
+
+  .swiper-wrapper {
+    .swiper-slide {
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border-radius: var(--radius);
+      }
+    }
+  }
+}
+
+.separator {
+  background-color: var(--primary);
+  height: 2px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

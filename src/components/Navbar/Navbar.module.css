@@ -1,0 +1,16 @@
+.navbar-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.nav-trail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--neutral-foreground);
+  color: var(--neutral);
+  padding: 8px 16px;
+  border-radius: var(--radius-selector);
+}

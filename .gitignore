@@ -13,6 +13,7 @@ dist-ssr
 *.local
 
 .claude/settings.local.json
+project-structure.md
 
 # Editor directories and files
 .vscode/*

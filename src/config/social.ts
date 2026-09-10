@@ -1,7 +1,8 @@
 export const EMAIL = "kristine@klungland.dev";
 export const GITHUB_URL = "https://github.com/klunglandk";
-export const GITHUB_REPO_URL = "https://github.com/klunglandk/portofolio";
-export const LINKEDIN_URL = "https://www.linkedin.com/in/kristine-klungland-326698350";
+export const GITHUB_REPO_URL = "https://github.com/klunglandk/klungland.dev";
+export const LINKEDIN_URL =
+  "https://www.linkedin.com/in/kristine-klungland-326698350";
 
 // Official brand logo, hosted in Firebase Storage so it never enters the git repo.
 // LINKEDIN_LOGO_URL (white) is used on the Contact page regardless of theme.

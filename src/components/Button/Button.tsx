@@ -36,6 +36,22 @@ export default function Button({
   );
 
   if (href) {
+    const isExternal = /^https?:\/\//.test(href);
+
+    if (isExternal) {
+      return (
+        <a
+          href={href}
+          onClick={onClick}
+          className={buttonClass}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {content}
+        </a>
+      );
+    }
+
     return (
       <Link to={href} onClick={onClick} className={buttonClass}>
         {content}

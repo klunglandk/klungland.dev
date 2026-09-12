@@ -16,7 +16,7 @@
     }: {
         id?: string;
         classNames?: string;
-        trigger: Snippet<[{ toggle: () => void }]>;
+        trigger: Snippet<[{ toggle: () => void; open: boolean }]>;
         children?: Snippet;
         placement?: Placement;
         strategy?: Strategy;
@@ -75,7 +75,7 @@
 </script>
 
 <span class="tooltip-anchor" bind:this={anchorElement}>
-    {@render trigger({ toggle: toggleTooltip })}
+    {@render trigger({ toggle: toggleTooltip, open })}
 </span>
 
 {#if open}

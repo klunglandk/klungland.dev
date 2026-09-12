@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { Card, Image } from "../../types/common";
 import { useImages } from "../../hooks/useImages";
 import { linkify } from "../../utils/linkify";
+import Button from "../Button/Button";
 import Icon from "../Icon/Icon";
+import Modal from "../Modal/Modal";
+import ModalImage from "../Modal/ModalImage";
+import TagList from "../TagList/TagList";
 import styles from "./Card.module.css";
-
-const CLOSE_ANIMATION_MS = 200;
 
 export default function Card({
   title,
@@ -19,6 +21,7 @@ export default function Card({
   href,
   collectionName,
   maxImages,
+  actionLabel,
 }: Card) {
   const isGallery = type === "gallery";
   const { images, loading, error } = useImages(
@@ -27,35 +30,6 @@ export default function Card({
   );
   const cardClass = `${styles.card} ${type ? styles[type] : ""}`;
   const [selectedImage, setSelectedImage] = useState<Image | null>(null);
-  const [isClosing, setIsClosing] = useState(false);
-
-  const closeModal = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      setSelectedImage(null);
-      setIsClosing(false);
-    }, CLOSE_ANIMATION_MS);
-  };
-
-  useEffect(() => {
-    if (!selectedImage) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeModal();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedImage]);
-
-  useEffect(() => {
-    if (!selectedImage) return;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [selectedImage]);
 
   if (isGallery) {
     if (loading) {
@@ -86,34 +60,14 @@ export default function Card({
           </div>
         ))}
         {selectedImage && (
-          <div
-            className={`${styles["image-modal-overlay"]} ${isClosing ? styles.closing : ""}`}
-            onClick={closeModal}
-          >
-            <div
-              className={`${styles["image-modal"]} ${isClosing ? styles.closing : ""}`}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                type="button"
-                className={styles["image-modal-close"]}
-                onClick={closeModal}
-                aria-label="Lukk"
-              >
-                ×
-              </button>
-              <img
-                src={selectedImage.src}
-                alt={selectedImage.alt}
-                onLoad={(e) => e.currentTarget.classList.add(styles.loaded)}
-              />
-              {selectedImage.description && (
-                <p className={styles["image-modal-description"]}>
-                  {linkify(selectedImage.description)}
-                </p>
-              )}
-            </div>
-          </div>
+          <Modal onClose={() => setSelectedImage(null)}>
+            <ModalImage src={selectedImage.src} alt={selectedImage.alt} />
+            {selectedImage.description && (
+              <p className={styles["image-modal-description"]}>
+                {linkify(selectedImage.description)}
+              </p>
+            )}
+          </Modal>
         )}
       </>
     );
@@ -121,9 +75,12 @@ export default function Card({
 
   const content = (
     <>
-      {type === "image" && (
+      {(type === "image" || image) && (
         <div className={styles["card-img"]}>
-          <img src={image} />
+          <img
+            src={image}
+            onLoad={(e) => e.currentTarget.classList.add(styles.loaded)}
+          />
         </div>
       )}
       <div className={styles["card-content"]}>
@@ -136,7 +93,19 @@ export default function Card({
         {children && (
           <div className={styles["card-description"]}>{children}</div>
         )}
-        {footer && <div className={styles["card-footer"]}>{footer}</div>}
+        {footer && (
+          <div className={styles["card-footer"]}>
+            {Array.isArray(footer) ? <TagList tags={footer} /> : footer}
+          </div>
+        )}
+        {actionLabel && (
+          <Button
+            className={styles["card-btn"]}
+            type="outline"
+            label={actionLabel}
+            onClick={onClick}
+          />
+        )}
       </div>
     </>
   );
@@ -146,6 +115,25 @@ export default function Card({
       <Link to={href} onClick={onClick} className={cardClass}>
         {content}
       </Link>
+    );
+  }
+
+  if (onClick) {
+    return (
+      <div
+        className={`${cardClass} ${styles.clickable}`}
+        role="button"
+        tabIndex={0}
+        onClick={onClick}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onClick();
+          }
+        }}
+      >
+        {content}
+      </div>
     );
   }
 

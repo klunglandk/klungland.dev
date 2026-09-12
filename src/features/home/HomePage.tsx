@@ -1,7 +1,7 @@
 import Widget from "../../components/Widget/Widget";
-import Gallery from "../../components/Gallery/Gallery";
 import Row from "../../components/Row/Row";
 import Card from "../../components/Card/Card";
+import FeaturedProjects from "./components/FeaturedProjects";
 
 export function HomePage() {
   return (
@@ -26,8 +26,8 @@ export function HomePage() {
         </Widget>
       </Row>
 
-      <Widget title="Projects">
-        <Gallery collectionName="projects" />
+      <Widget title="Spotlight">
+        <FeaturedProjects />
       </Widget>
     </div>
   );

@@ -15,6 +15,12 @@
       aspect-ratio: 1 / 1;
       border: 1px solid var(--muted-foreground);
       box-shadow: 0.08rem 0.1rem 0.5rem var(--muted-foreground);
+      opacity: 0;
+      transition: opacity 250ms ease;
+
+      &.loaded {
+        opacity: 1;
+      }
     }
   }
 
@@ -41,13 +47,37 @@
 .item {
   border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
-  padding: 20px;
-  background-color: var(--card);
-  aspect-ratio: 2 / 1;
-  transition: background-color 200ms;
+  align-self: stretch;
+  min-height: 12rem;
+  display: flex;
+  gap: 0;
+  flex-direction: column;
+  overflow: hidden;
+  transition:
+    background-color 200ms,
+    transform 200ms ease;
+
+  .card-img {
+    width: 100%;
+    flex-shrink: 0;
+    align-self: stretch;
+
+    img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+    }
+  }
 
   .card-content {
     gap: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
   }
 
   .card-icon {
@@ -59,6 +89,10 @@
     color: var(--foreground);
   }
 
+  .card-description {
+    font-size: var(--font-size-secondary);
+  }
+
   .card-content .card-footer {
     color: color-mix(in oklch, var(--foreground) 60%, transparent);
     font-style: normal;
@@ -66,13 +100,61 @@
   }
 }
 
-a.item:hover {
+a.item:hover,
+.item.clickable:hover {
   cursor: pointer;
   background-color: var(--muted);
+  transform: translateY(-4px);
 }
 
 div.item {
   opacity: 0.6;
+}
+
+.item.clickable {
+  opacity: 1;
+}
+
+.spotlight {
+  gap: 1rem;
+  min-height: 160px;
+  cursor: pointer;
+  transition: transform 200ms ease;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  .card-img {
+    flex: 0 0 50%;
+    align-self: stretch;
+
+    img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: none;
+      box-shadow: none;
+    }
+  }
+
+  .card-content {
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 1rem;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--foreground);
+  }
+
+  .card-description {
+    color: color-mix(in oklch, var(--foreground) 80%, transparent);
+  }
 }
 
 .gallery {
@@ -81,56 +163,16 @@ div.item {
   min-width: 0;
   min-height: 0;
   cursor: pointer;
+  transition: transform 200ms ease;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
 
   img {
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
-    opacity: 0;
-    transition: opacity 250ms ease;
-
-    &.loaded {
-      opacity: 1;
-    }
-  }
-}
-
-.image-modal-overlay {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1000;
-  padding: 40px;
-  animation: fade-in 0.2s ease-out;
-
-  &.closing {
-    animation: fade-out 0.2s ease-in forwards;
-  }
-}
-
-.image-modal {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 90vw;
-  max-height: 90vh;
-  animation: scale-in 0.2s ease-out;
-
-  &.closing {
-    animation: scale-out 0.2s ease-in forwards;
-  }
-
-  img {
-    max-width: 100%;
-    max-height: 80vh;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    border-radius: var(--radius);
     opacity: 0;
     transition: opacity 250ms ease;
 
@@ -146,69 +188,6 @@ div.item {
   margin: 0;
 }
 
-.image-modal-close {
-  all: unset;
-  position: absolute;
-  top: -16px;
-  right: -16px;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: var(--background, #fff);
-  color: var(--foreground, #000);
-  font-size: 20px;
-  line-height: 1;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-
-  &:hover {
-    opacity: 0.8;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.92);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes scale-out {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.92);
-  }
-}
-
 .profile {
   display: flex;
   flex-direction: column;
@@ -219,8 +198,8 @@ div.item {
   align-items: center;
 }
 
-.info {
-  background-color: var(--muted);
+.info,
+.controls {
   border-radius: var(--radius);
   padding: 1rem;
   font-size: var(--font-size-secondary);
@@ -228,4 +207,16 @@ div.item {
     gap: 0.25rem;
     opacity: 0.9;
   }
+}
+
+.info {
+  background-color: var(--muted);
+}
+
+.controls {
+  background-color: var(--secondary);
+}
+
+.card-btn {
+  width: fit-content;
 }

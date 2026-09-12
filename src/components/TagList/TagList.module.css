@@ -1,0 +1,13 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  padding: 4px 10px;
+  border-radius: var(--radius-selector);
+  border: var(--border-width) solid var(--border);
+  font-size: var(--font-size-secondary);
+  color: var(--muted-foreground);
+}

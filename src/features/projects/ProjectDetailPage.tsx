@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { useParams } from "react-router-dom";
 import Widget from "../../components/Widget/Widget";
 import { capitalize } from "../../utils/text";
-import { ProjectRegistry } from "./ProjectRegistry";
+import { ProjectRegistry } from "../../config/projectRegistry";
 
 export function ProjectDetailPage() {
   const { category, slug } = useParams();

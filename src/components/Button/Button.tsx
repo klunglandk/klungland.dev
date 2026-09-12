@@ -13,15 +13,15 @@ export default function Button({
   type,
   href,
   active,
+  className,
+  ...restProps
 }: Button) {
-  const buttonClass = `${styles.btn} ${type ? styles[type] : ""} ${active ? styles.active : ""}`;
+  const buttonClass = `${styles.btn} ${type ? styles[type] : ""} ${active ? styles.active : ""} ${className ?? ""}`;
 
   const content = (
     <>
       {iconImage ? (
-        <div
-          className={`${styles["btn-icon"]} ${styles["btn-icon-brand"]}`}
-        >
+        <div className={`${styles["btn-icon"]} ${styles["btn-icon-brand"]}`}>
           <img src={iconImage} alt="" width={iconSize} height={iconSize} />
         </div>
       ) : (
@@ -60,7 +60,7 @@ export default function Button({
   }
 
   return (
-    <button onClick={onClick} className={buttonClass}>
+    <button onClick={onClick} className={buttonClass} {...restProps}>
       {content}
     </button>
   );

@@ -97,6 +97,7 @@
 
   &:not(.active):hover {
     background-color: var(--muted);
+    transform: translateY(-4px);
   }
 
   &.active {

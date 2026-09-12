@@ -12,7 +12,14 @@ export interface Row {
   children: React.ReactNode;
 }
 
-export type CardType = "image" | "info" | "item" | "gallery" | "profile";
+export type CardType =
+  | "image"
+  | "info"
+  | "item"
+  | "gallery"
+  | "profile"
+  | "controls"
+  | "spotlight";
 
 export interface Card {
   title?: string;
@@ -21,10 +28,11 @@ export interface Card {
   image?: string;
   icon?: IconName;
   children?: React.ReactNode;
-  footer?: string;
+  footer?: string[] | string;
   href?: string;
   collectionName?: string; // Firestore-samlingen som hentes når type="gallery"
   maxImages?: number; // Maks antall bilder som hentes når type="gallery"
+  actionLabel?: string; // Viser en Button med denne teksten nederst i kortet
 }
 
 export type ButtonType =
@@ -44,6 +52,7 @@ export interface Button {
   type?: ButtonType;
   href?: string;
   active?: boolean;
+  className?: string;
 }
 
 export type ButtonGroupType = "menu" | "navigation";

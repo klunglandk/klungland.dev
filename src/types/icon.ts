@@ -12,9 +12,12 @@ export const IconObject = {
   image: Icons.Image,
   codeXml: Icons.CodeXml,
   ellipsis: Icons.Ellipsis,
+  close: Icons.X,
   react: SiReact,
   svelte: SiSvelte,
   github: SiGithub,
+  moveLeft: Icons.MoveLeft,
+  moveRight: Icons.MoveRight,
 };
 
 export type IconName = keyof typeof IconObject;

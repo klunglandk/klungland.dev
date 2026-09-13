@@ -35,26 +35,6 @@ export interface Card {
   actionLabel?: string; // Viser en Button med denne teksten nederst i kortet
 }
 
-export type ButtonType =
-  | "icon"
-  | "list"
-  | "navbar"
-  | "nav"
-  | "trail"
-  | "outline";
-
-export interface Button {
-  icon?: string;
-  iconImage?: string; // Bruk denne i stedet for icon for merkevarelogoer (GitHub, LinkedIn) som ikke finnes i ikon-biblioteket
-  iconSize?: number;
-  label?: string;
-  onClick?: () => void;
-  type?: ButtonType;
-  href?: string;
-  active?: boolean;
-  className?: string;
-}
-
 export type ButtonGroupType = "menu" | "navigation";
 
 export interface ButtonGroup {

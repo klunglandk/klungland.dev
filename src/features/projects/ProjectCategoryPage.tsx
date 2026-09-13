@@ -3,8 +3,9 @@ import Card from "../../components/Card/Card";
 import Grid from "../../components/Grid/Grid";
 import Widget from "../../components/Widget/Widget";
 import { capitalize } from "../../utils/text";
-import { ProjectRegistry } from "../../config/projectRegistry";
+import { ProjectRegistry, type ProjectEntry } from "../../config/projectRegistry";
 import { useProjectData } from "../../hooks/useProjectData";
+import { useProjectDocument } from "../../hooks/useProjectDocument";
 
 export function ProjectCategoryPage() {
   const { category } = useParams();
@@ -20,7 +21,7 @@ export function ProjectCategoryPage() {
               key={slug}
               category={category ?? ""}
               slug={slug}
-              title={entries[slug].title}
+              entry={entries[slug]}
             />
           ))}
         </Grid>
@@ -32,6 +33,24 @@ export function ProjectCategoryPage() {
 }
 
 function CategoryProjectCard({
+  category,
+  slug,
+  entry,
+}: {
+  category: string;
+  slug: string;
+  entry: ProjectEntry;
+}) {
+  if (entry.kind === "document") {
+    return (
+      <DocumentProjectCard category={category} slug={slug} title={entry.title} />
+    );
+  }
+
+  return <DemoProjectCard category={category} slug={slug} title={entry.title} />;
+}
+
+function DemoProjectCard({
   category,
   slug,
   title,
@@ -52,6 +71,30 @@ function CategoryProjectCard({
       href={`/projects/${category}/${slug}`}
     >
       {description}
+    </Card>
+  );
+}
+
+function DocumentProjectCard({
+  category,
+  slug,
+  title,
+}: {
+  category: string;
+  slug: string;
+  title: string;
+}) {
+  const { data } = useProjectDocument(category, slug);
+
+  return (
+    <Card
+      title={title}
+      footer={data?.tags}
+      icon="image"
+      type="item"
+      href={`/projects/${category}/${slug}`}
+    >
+      {data?.description}
     </Card>
   );
 }

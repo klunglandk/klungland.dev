@@ -130,23 +130,13 @@ function toNullableNumber(value: string | boolean): number | null {
   return value === "unbounded" ? null : Number(value);
 }
 
-function toOptionalBoolean(value: string | boolean): boolean | undefined {
-  if (value === "show") return true;
-  if (value === "hide") return false;
-  return undefined;
-}
-
 function MultiselectStage({ values }: { values: PlaygroundValues }) {
   const containerRef = useSvelteMount(MultiselectDemo, {
     allowUserOptions: Boolean(values.allowUserOptions),
     disabled: Boolean(values.disabled),
-    loading: Boolean(values.loading),
     scrollX: Boolean(values.scrollX),
     scrollY: Boolean(values.scrollY),
     maxSelect: toNullableNumber(values.maxSelect),
-    minSelect: Number(values.minSelect),
-    maxOptions: toNullableNumber(values.maxOptions),
-    selectAllOption: toOptionalBoolean(values.selectAllOption),
     width: values.width === "full" ? undefined : String(values.width),
     height: Number(values.height),
     placeholder: String(values.placeholder),

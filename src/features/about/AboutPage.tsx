@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import clsx from "clsx";
 import Grid from "../../components/Grid/Grid";
 import Widget from "../../components/Widget/Widget";
 import Card from "../../components/Card/Card";
@@ -7,6 +8,7 @@ import ButtonGroup from "../../components/Button/ButtonGroup";
 import { aboutSections, techStack } from "./aboutContent";
 import Timeline from "../../components/Timeline/Timeline";
 import { linkify } from "../../utils/linkify";
+import styles from "./AboutPage.module.css";
 
 export function AboutPage() {
   const [activeTitle, setActiveTitle] = useState(aboutSections[0].title);
@@ -65,9 +67,11 @@ export function AboutPage() {
               <Fragment key={section.title}>
                 <Button
                   label={section.title}
-                  active={section.title === activeTitle}
                   onClick={() => setActiveTitle(section.title)}
-                  type="nav"
+                  className={clsx(
+                    styles.nav,
+                    section.title === activeTitle && styles.active,
+                  )}
                 />
               </Fragment>
             ))}

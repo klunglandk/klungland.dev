@@ -5,14 +5,11 @@ import type { Image } from "../types/common";
 
 export function useImages(collectionName: string, maxImages?: number) {
   const [images, setImages] = useState<Image[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!!collectionName);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!collectionName) {
-      setLoading(false);
-      return;
-    }
+    if (!collectionName) return;
 
     let isMounted = true;
 

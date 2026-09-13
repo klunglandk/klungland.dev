@@ -76,13 +76,13 @@ export function ContactPage() {
               <Button
                 icon="download"
                 label="Download CV (EN)"
-                type="outline"
+                variant="primary"
                 href={CV_EN_URL}
               />
               <Button
                 icon="download"
                 label="Download CV (NO)"
-                type="outline"
+                variant="primary"
                 href={CV_NO_URL}
               />
             </div>

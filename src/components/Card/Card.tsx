@@ -99,12 +99,7 @@ export default function Card({
           </div>
         )}
         {actionLabel && (
-          <Button
-            className={styles["card-btn"]}
-            type="outline"
-            label={actionLabel}
-            onClick={onClick}
-          />
+          <Button variant="primary" label={actionLabel} onClick={onClick} />
         )}
       </div>
     </>

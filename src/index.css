@@ -58,11 +58,8 @@
   color-scheme: light;
 }
 
-a {
-  all: unset;
-}
-
 a:not([class]) {
+  all: unset;
   color: var(--viz-rust);
   font-weight: 500;
   cursor: pointer;

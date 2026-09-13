@@ -12,7 +12,7 @@ export function HomePage() {
             type="image"
             title="Kristine Klungland"
             image="https://firebasestorage.googleapis.com/v0/b/klungland-dev.firebasestorage.app/o/profile_picture.jpg?alt=media&token=3f369497-5935-4166-b74b-a22b9dcd92a6"
-            footer="The website itself is built from scratch in React - consider it a part of the portfolio."
+            footer="The website itself is built from scratch in React, consider it a part of the portfolio."
           >
             <span>
               I am a computer engineering graduate from the University of Agder.

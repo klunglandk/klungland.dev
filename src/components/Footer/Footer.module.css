@@ -27,13 +27,6 @@ footer {
   }
 }
 
-.icon-chip-linkedin {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
 .footer-middle,
 .footer-bottom {
   opacity: 0.9;

@@ -1,0 +1,19 @@
+.image {
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius);
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+.subtitle,
+.paragraph {
+  font-size: var(--font-size-interactive);
+}

@@ -14,3 +14,22 @@
   padding: 8px 16px;
   border-radius: var(--radius-selector);
 }
+
+.trail {
+  color: var(--neutral);
+  opacity: 0.65;
+}
+
+.trail:hover {
+  color: var(--neutral);
+  opacity: 1;
+}
+
+.trail.active {
+  opacity: 1;
+  font-weight: 700;
+}
+
+.trail.active:hover {
+  cursor: auto;
+}

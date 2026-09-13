@@ -216,7 +216,3 @@ div.item {
 .controls {
   background-color: var(--secondary);
 }
-
-.card-btn {
-  width: fit-content;
-}

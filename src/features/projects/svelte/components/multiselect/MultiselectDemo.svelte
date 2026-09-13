@@ -31,10 +31,6 @@
 
     const options = ['React', 'Svelte', 'Vue', 'Angular', 'Solid'];
     let selected = $state<string[]>([]);
-
-    function handleChange() {
-        console.log('Selection changed in the Svelte component');
-    }
 </script>
 
 <Multiselect
@@ -52,5 +48,4 @@
     {allowUserOptions}
     {disabled}
     {loading}
-    onChange={handleChange}
 />

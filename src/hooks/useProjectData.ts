@@ -9,6 +9,7 @@ interface ProjectData {
   image?: Image;
   description?: string;
   tags?: string[];
+  sourceUrl?: string;
 }
 
 const EMPTY_DATA: ProjectData = { category: "", slug: "" };
@@ -43,6 +44,7 @@ export function useProjectData(category: string, slug: string) {
             : undefined,
           description: docData?.description,
           tags: docData?.tags,
+          sourceUrl: docData?.sourceURL,
         };
         cache.set(docId, result);
         setData(result);
@@ -80,6 +82,7 @@ export function useProjectData(category: string, slug: string) {
     image: effective?.image,
     description: effective?.description,
     tags: effective?.tags,
+    sourceUrl: effective?.sourceUrl,
     loading: !effective,
   };
 }

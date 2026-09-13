@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { useLocation } from "react-router-dom";
+import clsx from "clsx";
 import Button from "../Button/Button";
 import Icon from "../Icon/Icon";
 import { ROUTES } from "../../config/routes";
@@ -17,29 +18,33 @@ export default function Navbar() {
     <div className={styles["navbar-wrapper"]}>
       <Button
         label="Home"
-        type="navbar"
+        variant="ghost"
         href={ROUTES.home}
         active={pathname === ROUTES.home}
       />
       <Button
         label="About"
-        type="navbar"
+        variant="ghost"
         href={ROUTES.about}
         active={pathname === ROUTES.about}
       />
       {projectTrail.length > 0 ? (
         <div className={styles["nav-trail"]}>
-          <Button label="Projects" type="trail" href={ROUTES.projects} />
+          <Button
+            label="Projects"
+            href={ROUTES.projects}
+            className={styles.trail}
+          />
           {projectTrail.map((segment, i) => {
             const href = `/projects/${projectTrail.slice(0, i + 1).join("/")}`;
+            const isActive = i === projectTrail.length - 1;
             return (
               <Fragment key={href}>
                 <Icon icon="chevronRight" />
                 <Button
                   label={capitalize(segment)}
-                  type="trail"
                   href={href}
-                  active={i === projectTrail.length - 1}
+                  className={clsx(styles.trail, isActive && styles.active)}
                 />
               </Fragment>
             );
@@ -48,14 +53,14 @@ export default function Navbar() {
       ) : (
         <Button
           label="Projects"
-          type="navbar"
+          variant="ghost"
           href={ROUTES.projects}
           active={pathname.startsWith(ROUTES.projects)}
         />
       )}
       <Button
         label="Contact"
-        type="navbar"
+        variant="ghost"
         href={ROUTES.contact}
         active={pathname === ROUTES.contact}
       />

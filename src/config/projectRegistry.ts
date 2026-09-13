@@ -5,6 +5,10 @@ export interface ProjectEntry {
   title: string;
   component: LazyExoticComponent<ComponentType>;
   addedAt: string;
+  // Set for write-ups/documents (fetched from their own Firestore doc) as
+  // opposed to interactive demos. Excluded from the homepage Spotlight, which
+  // expects a "projects" collection entry with an image to show.
+  kind?: "document";
   sourceUrl?: string;
   demoUrl?: string;
 }
@@ -34,6 +38,17 @@ export const ProjectRegistry: Record<string, Record<string, ProjectEntry>> = {
   },
   react: {
     // legg til flere etter hvert som du bygger dem
+  },
+  other: {
+    speclens: {
+      title: "SpecLens",
+      kind: "document",
+      component: lazy(
+        () =>
+          import("../features/projects/other/components/speclens/SpecLens"),
+      ),
+      addedAt: "2026-09-12",
+    },
   },
 };
 
